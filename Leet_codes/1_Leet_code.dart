@@ -1,18 +1,24 @@
-void main() {
-  final int n = 20; // Change the value of 'n' to generate a different number of Fibonacci numbers
+class Solution {
+  List<int> twoSum(List<int> nums, int target) {
+    Map<int, int> map = {};
 
-  print('Fibonacci Sequence:');
-  for (int i = 0; i < n; i++) {
-    print(fibonacci(i));
+    for (int i = 0; i < nums.length; i++) {
+      int complement = target - nums[i];
+      if (map.containsKey(complement)) {
+        return [map[complement]!, i];
+      }
+      map[nums[i]] = i;
+    }
+
+    throw ArgumentError("No two sum solution found.");
   }
 }
 
-int fibonacci(int n) {
-  if (n == 0) {
-    return 0;
-  } else if (n == 1) {
-    return 1;
-  } else {
-    return fibonacci(n - 1) + fibonacci(n - 2);
-  }
+void main() {
+  List<int> nums = [2, 7, 11, 15];
+  int target = 9;
+
+  Solution solution = Solution();
+  List<int> result = solution.twoSum(nums, target);
+  print("Output: ${result}");
 }
